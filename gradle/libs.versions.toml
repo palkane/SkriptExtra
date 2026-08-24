@@ -1,0 +1,15 @@
+[versions]
+fawe-bukkit = "2.5.1"
+fawe-core = "2.5.1"
+skript = "2.10.2"
+paper-api = "1.21.4-R0.1-SNAPSHOT"
+adventure-api = "4.14.0"
+packetevents = "2.10.0"
+
+[libraries]
+fawe-bukkit = { module = "com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit", version.ref = "fawe-bukkit" }
+fawe-core = { module = "com.fastasyncworldedit:FastAsyncWorldEdit-Core", version.ref = "fawe-core" }
+skript = { module = "com.github.SkriptLang:Skript", version.ref = "skript" }
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper-api" }
+adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure-api" }
+packetevents = { module = "io.github.retrooper:PacketEvents", version.ref = "packetevents" }

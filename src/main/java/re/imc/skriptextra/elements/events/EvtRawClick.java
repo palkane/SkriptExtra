@@ -10,7 +10,9 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.jetbrains.annotations.Nullable;
+import re.imc.skriptextra.utils.PluginConfig;
 
 public class EvtRawClick extends SkriptEvent {
     static {
@@ -32,7 +34,15 @@ public class EvtRawClick extends SkriptEvent {
 
     @Override
     public boolean check(Event event) {
-        return true;
+        if (event instanceof PlayerInteractEvent interactEvent) {
+            return PluginConfig.bool("features.events.raw-click.player-interact", true)
+                    && (PluginConfig.bool("features.events.raw-click.off-hand", true) || interactEvent.getHand() != EquipmentSlot.OFF_HAND);
+        }
+        if (event instanceof PlayerInteractEntityEvent interactEvent) {
+            return PluginConfig.bool("features.events.raw-click.entity-interact", true)
+                    && (PluginConfig.bool("features.events.raw-click.off-hand", true) || interactEvent.getHand() != EquipmentSlot.OFF_HAND);
+        }
+        return false;
     }
 
     @Override

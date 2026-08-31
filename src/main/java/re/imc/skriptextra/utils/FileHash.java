@@ -6,6 +6,10 @@ import java.nio.file.Files;
 
 public class FileHash {
     public static String sha1(File file) throws Exception {
+        long maximumMiB = PluginConfig.longValue("features.functions.file-sha1.maximum-file-size-mib", 0L);
+        if (maximumMiB > 0 && file.length() > maximumMiB * 1024L * 1024L) {
+            throw new IllegalArgumentException("File exceeds the configured maximum size of " + maximumMiB + " MiB");
+        }
         byte[] bytes = Files.readAllBytes(file.toPath());
         return Hashing.sha1().hashBytes(bytes).toString();
     }

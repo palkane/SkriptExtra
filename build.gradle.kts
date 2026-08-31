@@ -53,6 +53,7 @@ dependencies {
     compileOnly(libs.fawe.bukkit)
     compileOnly("com.github.retrooper:packetevents-spigot:2.10.1")
     compileOnly("me.clip:placeholderapi:2.11.6")
+    compileOnly("com.github.SkriptLang:Skript-reflect:2.6.1")
 }
 
 group = "re.imc"

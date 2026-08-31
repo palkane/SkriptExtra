@@ -11,6 +11,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import re.imc.skriptextra.utils.placeholderAPI.PlaceholderPlugin;
+import re.imc.skriptextra.utils.PluginConfig;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -52,6 +53,10 @@ public class ExprPlaceholderValue extends SimpleExpression<String> {
 	@SuppressWarnings("unchecked")
 	public boolean init(Expression<?>[] exprs, int matchedPattern, @NotNull Kleenean isDelayed, @NotNull ParseResult parseResult) {
 		isRelational = parseResult.hasTag("relational");
+		if (isRelational && !PluginConfig.bool("features.structures.custom-placeholder.relational", true)) {
+			Skript.error("Relational placeholders are disabled in SkriptExtra's config.yml.");
+			return false;
+		}
 		placeholders = (Expression<String>) exprs[0];
 		players = (Expression<OfflinePlayer>) exprs[1];
 

@@ -11,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.Nullable;
+import re.imc.skriptextra.utils.PluginConfig;
 
 public class EvtAsyncPeriodical extends SkriptEvent {
 
@@ -38,7 +39,8 @@ public class EvtAsyncPeriodical extends SkriptEvent {
 
     @Override
     public boolean postLoad() {
-        long ticks = Math.max(1L, period.getAs(Timespan.TimePeriod.TICK));
+        long minimumTicks = Math.max(1L, PluginConfig.longValue("features.events.async-periodical.minimum-period-ticks", 1L));
+        long ticks = Math.max(minimumTicks, period.getAs(Timespan.TimePeriod.TICK));
         task = Bukkit.getScheduler().runTaskTimerAsynchronously(
                 Skript.getInstance(),
                 this::execute,

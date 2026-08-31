@@ -6,4 +6,4 @@ api-version: '1.21'
 authors: [ zimzaza4 , Radiation_pi ]
 depend: [ Skript ]
 
-softdepend: [ WorldEdit, FastAsyncWorldEdit, packetevents ]
+softdepend: [ WorldEdit, FastAsyncWorldEdit, PacketEvents, PlaceholderAPI, skript-reflect, Vessel ]

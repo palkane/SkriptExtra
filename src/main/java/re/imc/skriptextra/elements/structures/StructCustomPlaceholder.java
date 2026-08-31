@@ -24,6 +24,7 @@ import org.skriptlang.skript.lang.script.Script;
 import org.skriptlang.skript.lang.structure.Structure;
 import re.imc.skriptextra.SkriptExtra;
 import re.imc.skriptextra.utils.placeholderAPI.*;
+import re.imc.skriptextra.utils.PluginConfig;
 
 @Name("Custom Placeholder")
 @Description({
@@ -82,6 +83,10 @@ static {
 
 	    this.registry = SkriptExtra.getInstance().getRegistry();
 	    this.isRelational = parseResult.hasTag("relational");
+	    if (isRelational && !PluginConfig.bool("features.structures.custom-placeholder.relational", true)) {
+	        Skript.error("Relational custom placeholders are disabled in SkriptExtra's config.yml.");
+	        return false;
+	    }
 	    this.entryContainer = entryContainer;
 
 	    return true;
